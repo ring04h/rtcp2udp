@@ -14,11 +14,19 @@ Http Server  <- 内网机器 -> Internet Server
 client request -> tcp:119.29.29.29:80 -> udp:119.29.29.29:53 -> tcp:172.168.1.10:80
 
 1. 在你的外网服务器监听用于服务的 UDP&TCP 端口
+这里假设场景,你的外网服务器 IP 为 119.29.29.29
 ```bash
-# 这里假设场景,你的外网服务器 IP 为 119.29.29.29
-python tcp2udp.py -t 0.0.0.0:80 -u 0.0.0.0:53
+[root@localhost ~]#python tcp2udp.py -t 0.0.0.0:80 -u 0.0.0.0:53
+[INFO] UDPServer 0.0.0.0:53 Listening Success...
+[INFO] TCPServer 0.0.0.0:80 Listening Success...
 ```
 2. 在内网机器打通与外网服务器之间的 UDP 隧道
 ```bash
-python rtcp2udp.py -t 172.168.1.10:80 -u 119.29.29.29:53
+[root@localhost ~]#python rtcp2udp.py -t 172.168.1.10:80 -u 119.29.29.29:53
+[INFO] Client Bridge Connection Success...
 ```
+3. 当隧道打通后，就可以开始文件传输服务
+```bash
+[root@localhost ~]# wget http://119.29.29.29/src/file.tar.gz
+```
+
