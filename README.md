@@ -7,7 +7,7 @@ Reverse TCP Port to UDP Forwarding Tools
 本工具的原理为，向外网服务器建立一个反向的UDP(53)隧道,用于文件传输；  
 
 ## 实例图
-![](https://github.com/ring04h/rtcp2udp/blob/master/portmap.png?20160429)
+![](https://github.com/ring04h/rtcp2udp/blob/master/portmap.png?20160429)  
 外网客户端连接 119.29.29.29 的80端口，等于连接内网 172.168.1.10 服务器的80端口，隧道采用UDP协议传输  
 
 ## 使用说明
