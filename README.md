@@ -10,4 +10,15 @@
 ![](https://github.com/ring04h/rtcp2udp/blob/master/portmap.png?20160429)
 
 ## 使用说明
-如上图，
+Http Server  <- 内网机器 -> Internet Server
+client request -> tcp:119.29.29.29:80 -> udp:119.29.29.29:53 -> tcp:172.168.1.10:80
+
+1. 在你的外网服务器监听用于服务的 UDP&TCP 端口
+```shell
+# 这里假设场景,你的外网服务器 IP 为 119.29.29.29
+python tcp2udp.py -t 0.0.0.0:80 -u 0.0.0.0:53
+```
+2. 在内网机器打通与外网服务器之间的 UDP 隧道
+```shell
+python rtcp2udp.py -t 172.168.1.10:80 -u 119.29.29.29:53
+``` 
