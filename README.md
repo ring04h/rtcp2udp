@@ -11,7 +11,7 @@ Reverse TCP Port to UDP Forwarding Tools
 外网客户端连接 119.29.29.29 的80端口，等于连接内网 172.168.1.10 服务器的80端口，隧道采用UDP协议传输  
 
 ## 使用说明
-Http Server  <- 内网机器 -> Internet Server (UDP隧道)
+Http Server  <- 内网机器 -> Internet Server (UDP隧道)  
 Client -> tcp:119.29.29.29:80 -> udp:119.29.29.29:53 -> tcp:172.168.1.10:80
 
 * 在你的外网服务器监听用于服务的 UDP&TCP 端口
