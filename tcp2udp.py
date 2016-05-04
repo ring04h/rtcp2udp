@@ -2,11 +2,12 @@
 # encoding: utf-8
 # bug fix, plz contact ringzero@0x557.org
 
+import sys
 import socket
 import threading
 import argparse
-
 import logging
+
 logging.basicConfig(
     level=logging.INFO,
     format='[%(levelname)s] %(message)s',
@@ -154,24 +155,21 @@ if __name__ == '__main__':
     if ":" not in args.tcp or ":" not in args.udp:
         logging.info('args is error')
         logging.info('usage: python tcp2udp -t 0.0.0.0:80 -u 0.0.0.0:53')
-        exit()
+        sys.exit(1)
 
     tcp_addr,tcp_port = args.tcp.split(':')
     udp_addr,udp_port = args.udp.split(':')
 
     portmap = PortMap(ltcp_addr=tcp_addr,ltcp_port=int(tcp_port),ludp_addr=udp_addr,ludp_port=int(udp_port))
 
-    # start udp_server in backgroud
-    udp_proxy_thread = threading.Thread(target=portmap.udp_proxy, args=())
-    udp_proxy_thread.daemon = True
-    udp_proxy_thread.start()
+    try:
+        # start udp_server in backgroud
+        udp_proxy_thread = threading.Thread(target=portmap.udp_proxy, args=())
+        udp_proxy_thread.daemon = True
+        udp_proxy_thread.start()
 
-    # bridge connection
-    portmap.start_bridge_server()
-
-
-
-
-
-
-
+        # bridge connection
+        portmap.start_bridge_server()
+    except KeyboardInterrupt:
+        print "Ctrl C - Stopping Server"
+        sys.exit(1)

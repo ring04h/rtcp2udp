@@ -2,6 +2,7 @@
 # encoding: utf-8
 # bug fix, plz contact ringzero@0x557.org
 
+import sys
 import socket
 import threading
 import argparse
@@ -90,7 +91,7 @@ if __name__ == '__main__':
     if ":" not in args.tcp or ":" not in args.udp:
         logging.info('args is error')
         logging.info('usage: python rtcp2udp -t 172.168.1.10:80 -u 119.29.29.29:53')
-        exit()
+        sys.exit(1)
 
     tcp_addr,tcp_port = args.tcp.split(':')
     udp_addr,udp_port = args.udp.split(':')
@@ -99,4 +100,8 @@ if __name__ == '__main__':
     tcp_conn = portmap.tcp_client(tcp_addr,int(tcp_port))
     udp_conn = portmap.udp_client(udp_addr,int(udp_port))
 
-    portmap.udp_forward(tcp_conn,udp_conn)
+    try:
+        portmap.udp_forward(tcp_conn,udp_conn)
+    except KeyboardInterrupt:
+        print "Ctrl C - Stopping Client"
+        sys.exit(1)
