@@ -1,8 +1,12 @@
 # rtcp2udp
 反向端口转发工具 v 1.0  
 Reverse TCP Port to UDP Forwarding Tools  
+  
 Last Update: 2016年04月29日  
 问题反馈: ringzero@0x557.org  
+
+## 更稳定的方法
+[一个稳定的UDP反向端口映射方法](https://github.com/ring04h/rtcp2udp/blob/master/udptunnel.md)  
 
 ## 实例图
 ![](https://github.com/ring04h/rtcp2udp/blob/master/portmap.png?20160429)  
