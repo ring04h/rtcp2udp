@@ -1,7 +1,8 @@
 # 一个稳定的UDP反向端口映射方法
 使用到的工具  
 https://github.com/ring04h/udptunnel  
-http://fuzz.wuyun.org/src/s5.py  
+http://fuzz.wuyun.org/src/s5.py    
+https://github.com/ring04h/s5.go (socks5代理,建议使用go语言版的)
 
 ## 原理实例图
 ![](https://github.com/ring04h/rtcp2udp/blob/master/portmap_.png?20160505)  
